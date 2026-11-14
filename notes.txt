@@ -25,3 +25,4 @@ Learning Log poject
 - Read/write to a database
 - manage users
 
+There has to be a one to many relationship between the topic and entries (each topic can have multiple entries)
