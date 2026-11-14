@@ -19,5 +19,6 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('MainApp.urls')), #'' means the home page of the website, and it will include the urls from MainApp.urls
-]
+    path('', include('MainApp.urls')),
+    ]
+
