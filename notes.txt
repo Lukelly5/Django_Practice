@@ -1,0 +1,27 @@
+Web apps is an application pogram that is stored on a remote server and delivered over th internet through browser interface
+
+A website can have one or many web apps each performing a unique specific task
+
+For a web app to operate, it needs a web server, application server, and a database.
+
+Web Applications
+
+Front end (HTML, Javascript)
+- Webpage and web server
+
+Backend (Python, Java)
+- application sever and database
+
+Post request vs GET request (Get request 'gets" the information from the database or the websever)
+
+Post request ("Post" or send information to the database or webserver)
+
+Django is a popular Python library used to build web apps
+
+Learning Log poject
+- define models (tables) for the data to work with
+- Write views and templates
+- Respond to page requests
+- Read/write to a database
+- manage users
+
