@@ -2,19 +2,18 @@
 
 {% block content %}
 
-<p>Topics</p>
+<h1>Topics</h1>
 
-<ul>
+<ul class="list-group mb-3">
     {% for topic in topics %}
-        <li>
+        <li class="list-group-item">
             <a href="{% url 'MainApp:topic' topic.id %}">{{ topic }}</a>
         </li>
     {% empty %}
-        <li>No topics have been added yet.</li>
+        <li class="list-group-item">No topics have been added yet.</li>
     {% endfor %}
 </ul>
 
-<a href="{% url 'MainApp:new_topic' %}">Add a new topic</a>
+<a class="btn btn-primary" href="{% url 'MainApp:new_topic' %}">Add a new topic</a>
 
 {% endblock content %}
-

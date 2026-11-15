@@ -1,27 +1,66 @@
-<a href="{% url 'MainApp:index' %}">Learning Log</a>
+{% load django_bootstrap5 %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Learning Log</title>
 
+    <!-- These two tags load Bootstrap's CSS and JavaScript -->
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
 
-{%  if user.is_authenticated %}
-    <p>Hello {{ user.username }}</p>
+    <!-- Navigation bar at the top of every page -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'MainApp:index' %}">Learning Log</a>
 
-    <!-- Logging out has to be a POST request in newer versions of Django -->
-    <form action="{% url 'users:logout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
+            <!-- This button only shows on small screens to open/close the menu -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <p>
-    <a href="{% url 'MainApp:topics' %}">Topics</a>
-    </p>
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <!-- Links on the left -->
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'MainApp:topics' %}">Topics</a>
+                    </li>
+                </ul>
 
-{% else %}
-    <p><a href="{% url 'users:login' %}">Login</a></p>
-    <p><a href="{% url 'users:register' %}">Register</a></p>
+                <!-- Account links on the right -->
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <span class="navbar-text me-2">Hello, {{ user.username }}</span>
+                        </li>
+                        <li class="nav-item">
+                            <!-- Logging out has to be a POST request in newer versions of Django -->
+                            <form action="{% url 'users:logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-secondary btn-sm">Logout</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:login' %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-{% endif %}
+    <!-- Each page's content goes inside this container -->
+    <main class="container">
+        {% block content %}{% endblock content %}
+    </main>
 
-
-
-{% block content %}
-
-{% endblock content %}
+</body>
+</html>

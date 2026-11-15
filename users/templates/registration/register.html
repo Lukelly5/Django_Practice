@@ -1,18 +1,15 @@
 {% extends "mainapp/base.html" %}
+{% load django_bootstrap5 %}
 
 {% block content %}
 
-<form action="{% url 'users:register' %}" method="post">
-    
-    {% csrf_token %}
-    
-    {{ form.as_p }}
-    
-    <button type="submit">Register</button>
-    <input type="hidden" name="next"
-    value="{% url 'MainApp:index' %}"/>
+<h1>Register</h1>
 
+<form action="{% url 'users:register' %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">Register</button>
+    <input type="hidden" name="next" value="{% url 'MainApp:index' %}"/>
 </form>
 
 {% endblock content %}
-

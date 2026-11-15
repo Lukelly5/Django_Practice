@@ -1,16 +1,14 @@
 {% extends "mainapp/base.html" %}
+{% load django_bootstrap5 %}
 
 {% block content %}
 
-<p>Edit entry:</p>
+<h1>Edit entry</h1>
+
 <form action="{% url 'MainApp:edit_entry' entry.id %}" method="post">
-    
     {% csrf_token %}
-    
-    {{ form.as_p }}
-    
-    <button type="submit">Save Changes</button>
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">Save Changes</button>
 </form>
 
 {% endblock content %}
-

@@ -1,16 +1,15 @@
 {% extends "mainapp/base.html" %}
+{% load django_bootstrap5 %}
 
 {% block content %}
 
+<h1><a href="{% url 'MainApp:topic' topic.id %}">{{ topic }}</a></h1>
 <p>Add a new entry:</p>
+
 <form action="{% url 'MainApp:new_entry' topic.id %}" method="post">
-    
     {% csrf_token %}
-    
-    {{ form.as_p }}
-    
-    <button type="submit">Add Entry</button>
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">Add Entry</button>
 </form>
 
 {% endblock content %}
-
