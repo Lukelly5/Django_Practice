@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
@@ -20,7 +20,7 @@ def topics(request):
 
 @login_required
 def topic(request, topic_id):
-    topic = Topic.objects.get(id=topic_id) # get the topic object with the id of topic_id
+    topic = get_object_or_404(Topic, id=topic_id) # get the topic object with the id of topic_id
     # Make sure the topic belongs to the current user.
     if topic.owner != request.user:
         raise Http404
@@ -48,7 +48,7 @@ def new_topic(request):
 
 @login_required
 def edit_entry(request, entry_id):
-    entry = Entry.objects.get(id=entry_id)
+    entry = get_object_or_404(Entry, id=entry_id)
     topic = entry.topic # get the topic of the entry we got from the URL
     # Make sure the entry belongs to the current user.
     if topic.owner != request.user:
@@ -67,7 +67,7 @@ def edit_entry(request, entry_id):
 
 @login_required
 def new_entry(request, topic_id):
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     # Make sure the topic belongs to the current user.
     if topic.owner != request.user:
         raise Http404
