@@ -1,6 +1,19 @@
-<p>
-    <a href=""{% url 'MainApp:index' %}">Learning Log</a>
-</p>
+<a href="{% url 'MainApp:index' %}">Learning Log</a>
+
+
+{%  if user.is_authenticated %}
+    <p>Hello {{ user.username }}
+        <a href="{% url 'users:logout' %}">Logout</a></p>
+
+    <p>
+    <a href="{% url 'MainApp:topics' %}">Topics</a>
+    </p>
+
+{% else %}
+    <p><a href="{% url 'users:login' %}">Login</a></p>
+{% endif %}
+
+
 
 {% block content %}
 

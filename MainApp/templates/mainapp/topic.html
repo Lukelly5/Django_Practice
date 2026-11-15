@@ -8,6 +8,9 @@
     {% for entry in entries %}
     <p>{{ entry.text }}</p>
     <p>{{ entry.date_added }}</p>
+    <p>
+        <a href="{% url 'MainApp:edit_entry' entry.id %}">Edit Entry</a>
+    </p>
     {% empty %}
         <li>No entries have been added yet.</li>
     {% endfor %}
