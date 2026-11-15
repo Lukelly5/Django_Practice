@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from .models import Topic
 from .forms import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
     """The home page for Learning Log."""
     return render(request, 'MainApp/index.html')
 
+@login_required
 def topics(request):
     """Show all topics."""
     topics = Topic.objects.all().order_by('date_added')
@@ -15,12 +17,14 @@ def topics(request):
     
     return render(request, 'MainApp/topics.html', context)
 
+@login_required
 def topic(request, topic_id):
     topic = Topic.objects.get(id=topic_id) # get the topic object with the id of topic_id
     entries = Entry.objects.filter(topic=topic).order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
     return render(request, 'MainApp/topic.html', context)
 
+@login_required
 def new_topic(request):
     if request.method != 'POST':
         # No data submitted; create a blank form.
@@ -35,6 +39,7 @@ def new_topic(request):
     context = {'form': form}
     return render(request, 'MainApp/new_topic.html', context)
 
+@login_required
 def edit_entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic # get the topic of the entry we got from the URL
@@ -50,6 +55,7 @@ def edit_entry(request, entry_id):
     context = {'form': form, 'topic': topic, 'entry': entry}
     return render(request, 'MainApp/edit_entry.html', context)
 
+@login_required
 def new_entry(request, topic_id):
     topic = Topic.objects.get(id=topic_id) 
 

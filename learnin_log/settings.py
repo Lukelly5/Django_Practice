@@ -128,3 +128,5 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+LOGIN_URL = '/users/login/' # this is the URL that users will be redirected to if they try to access a page that requires login
