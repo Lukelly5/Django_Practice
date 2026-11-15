@@ -1,9 +1,9 @@
-{% extends "MainApp/base.html" %}
+{% extends "mainapp/base.html" %}
 
 {% block content %}
 
 <p>Add a new entry:</p>
-<form action="{% url 'MainApp:new_entry' topic_id %}" method="post">
+<form action="{% url 'MainApp:new_entry' topic.id %}" method="post">
     
     {% csrf_token %}
     
@@ -12,5 +12,5 @@
     <button type="submit">Add Entry</button>
 </form>
 
-{% endblock content % }
+{% endblock content %}
 

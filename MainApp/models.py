@@ -24,3 +24,4 @@ class Entry(models.Model):
 
 # making changes to the models.py file requires running the following commands in the terminal:
 # py manage.py makemigrations MainApp
+# py manage.py migrate

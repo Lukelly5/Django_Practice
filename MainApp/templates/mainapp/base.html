@@ -2,8 +2,13 @@
 
 
 {%  if user.is_authenticated %}
-    <p>Hello {{ user.username }}
-        <a href="{% url 'users:logout' %}">Logout</a></p>
+    <p>Hello {{ user.username }}</p>
+
+    <!-- Logging out has to be a POST request in newer versions of Django -->
+    <form action="{% url 'users:logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
 
     <p>
     <a href="{% url 'MainApp:topics' %}">Topics</a>
@@ -19,4 +24,4 @@
 
 {% block content %}
 
-{% endblock content % }
+{% endblock content %}
