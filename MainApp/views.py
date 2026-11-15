@@ -14,3 +14,10 @@ def topics(request):
     
     return render(request, 'MainApp/topics.html', context)
 
+def topic(request, topic_id):
+    topic = Topic.objects.get(id=topic_id) # get the topic object with the id of topic_id
+    entries = Entry.objects.filter(topic=topic).order_by('-date_added')
+    context = {'topic': topic, 'entries': entries}
+    return render(request, 'MainApp/topic.html', context)
+
+    

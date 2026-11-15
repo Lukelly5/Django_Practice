@@ -1,0 +1,17 @@
+{% extends "mainapp/base.html" %}
+
+{% block content %}
+
+<p>Topics : {{ topic }}</p>
+
+<ul>
+    {% for entry in entries %}
+    <p>{{ entry.text }}</p>
+    <p>{{ entry.date_added }}</p>
+    {% empty %}
+        <li>No entries have been added yet.</li>
+    {% endfor %}
+</ul>
+
+{% endblock content % }
+
